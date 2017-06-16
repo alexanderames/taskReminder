@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { addReminder } from '../actions';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			text: ''
+		}
+	}
+
+	addReminder() {
+		this.props.addReminder(this.state.text);
+	}
+
 	render() {
 		return (
 			<div className="App">
@@ -13,11 +25,13 @@ class App extends Component {
 					<input
 						className="materialize-textarea"
 						placeholder="I have to.."
+						onChange={event => this.setState({text: event.target.value})}
 					/>
 				</div>
 				<button
 					type="button"
 					className="waves-effect waves-teal btn-flat"
+					onClick={() => this.addReminder()}
 				>
 					Add Reminder
 				</button>
@@ -27,4 +41,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default connect(null, { addReminder })(App);
