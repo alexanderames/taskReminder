@@ -11,7 +11,8 @@ class App extends Component {
 	}
 
 	addReminder() {
-		this.props.addReminder(this.state.text);
+		console.log('this.state.dueDate', this.state.dueDate);
+		this.props.addReminder(this.state.text, this.state.dueDate);
 	}
 
 	deleteReminder(id) {
@@ -53,6 +54,11 @@ class App extends Component {
 						className="materialize-textarea"
 						placeholder="I have to.."
 						onChange={event => this.setState({text: event.target.value})}
+					/>
+					<input
+					type="date"
+					className="datepicker"
+					onChange={event => this.setState({dueDate: event.target.value})}
 					/>
 				</div>
 				<button
