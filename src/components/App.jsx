@@ -14,14 +14,30 @@ class App extends Component {
 		this.props.addReminder(this.state.text);
 	}
 
+	renderReminders() {
+		const { reminders } = this.props;
+		return (
+			<ul className="collection">
+				{
+					reminders.map(reminder => {
+						return (
+							<li key={reminder.id} className="collection-item">
+								<div>{reminder.text}</div>
+							</li>
+						)
+					})
+				}
+			</ul>
+		)
+	}
+
 	render() {
-		console.log('this.props', this.props);
 		return (
 			<div className="App">
 				<div className="title">
 					Task Reminder
 				</div>
-			<div className="row">
+			<div className="row reminderForm">
 				<div className="input-field inline">
 					<input
 						className="materialize-textarea"
@@ -37,6 +53,7 @@ class App extends Component {
 					Add Reminder
 				</button>
 			</div>
+				{ this.renderReminders() }
 		</div>
 		)
 	}
